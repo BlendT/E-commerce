@@ -1,8 +1,9 @@
 import classes from "./Header.module.css";
-import { VscSearch, VscLocation } from "react-icons/vsc";
+import { VscSearch } from "react-icons/vsc";
 import { GoLocation } from "react-icons/go";
 import { FaRegUser } from "react-icons/fa";
 import { MdOutlineShoppingBag } from "react-icons/md";
+import { ReactComponent as Logo } from "../../assets/headerLogo.svg";
 
 const Header = () => {
   return (
@@ -45,8 +46,10 @@ const Header = () => {
         </header>
       </div>
       <div className={classes["middle-content"]}>
-        <div className={classes.title}>
-          <h1>Tittle</h1>
+        <div className={classes.tittle}>
+          <a href="/">
+            <Logo />
+          </a>
         </div>
         <div className={classes.category}>
           <nav>
@@ -83,7 +86,13 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <a href="/">aaaaa</a>
+              <a href="/">FREE SHIPPING OVER $150*</a>
+            </li>
+            <li>
+              <a href="/">FREE CLICK & COLLECT</a>
+            </li>
+            <li>
+              <a href="/">AFTERPAY & ZIPPAY AVAILABLE*</a>
             </li>
           </ul>
         </nav>

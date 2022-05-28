@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path id="path-0" d="M 76.751 180.854 C 125.006 224.143 156.735 225.935 187.273 236.115 C 200.4 241.502 214.463 251.744 223.556 251.744 C 226.787 251.744 223.24 232.72 222.997 230.533 C 225.762 216.685 234.719 203.359 234.719 192.576 L 234.719 191.46" style="fill: none;"/>
+  </defs>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 19.5px;" x="169.969" y="169.132"> </text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 19.5px;" x="207.926" y="174.714"> </text>
+  <text style="fill: rgb(216, 46, 46); font-family: Arial, sans-serif; font-size: 31.039px; font-weight: 700; white-space: pre;" transform="matrix(2.21571, 0, 0, 2.899578, -265.804047, -380.207916)" x="187.878" y="206.53">EN</text>
+  <text style="fill: rgb(27, 62, 151); font-family: Arial, sans-serif; font-size: 29.7458px; font-weight: 700; line-height: 47.5932px; stroke-width: 0px; white-space: pre;" transform="matrix(2.094332, 0, 0, 3.02564, 45.268257, -278.951538)" x="102.475" y="164.666">SPORT</text>
+  <ellipse style="stroke: rgb(215, 0, 0); fill: rgb(216, 46, 46);" cx="83.216" cy="169.692" rx="12.56" ry="12.838"/>
+  <path style="fill: rgb(27, 62, 151); stroke: rgb(27, 62, 151);" d="M 137.394 158.527 C 120.444 158.527 114.746 159.354 104.191 169.493 C 99.292 174.197 99.996 185.478 94.848 190.423 C 91.167 193.957 73.208 191.419 67.866 191.419 C 70.205 189.173 68.042 197.727 68.907 199.397 C 70.664 202.765 73.058 210.035 73.058 214.346 C 81.286 206.438 97.235 217.035 102.114 212.35 C 119.201 195.935 106.2 176.465 141.548 176.465 C 139.473 170.973 138.164 158.527 137.394 158.527 Z"/>
+</svg>

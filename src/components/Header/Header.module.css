@@ -15,6 +15,12 @@
   padding-inline-end: 40px;
 }
 
+.tittle {
+  width: 167px;
+  height: 101px;
+  margin-top: -27px;
+}
+
 .header ul,
 .category ul,
 .offers ul {
@@ -57,11 +63,14 @@
 
 .offers {
   background-color: #164194 !important;
-  height: 30px;
   display: flex;
   align-items: center;
+  justify-content: space-around;
 }
 
 .offers a {
   color: white;
+}
+.offers ul {
+  margin: 4px;
 }
