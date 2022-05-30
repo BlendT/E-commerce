@@ -1,7 +1,9 @@
 .header-container {
   position: fixed;
   width: 100%;
+  background-color: #fff;
   height: auto;
+  z-index: 999;
 }
 .top-header {
   height: auto;
@@ -18,7 +20,7 @@
 .tittle {
   width: 167px;
   height: 101px;
-  margin-top: -27px;
+  margin-top: 0px;
 }
 
 .header ul,
@@ -39,6 +41,17 @@
   text-decoration: none;
   text-transform: capitalize;
 }
+
+.header a:hover {
+  color: rgb(194, 183, 246);
+}
+.category a:hover {
+  color: red;
+}
+.offers a:hover {
+  text-decoration: underline 1px solid;
+}
+
 .header a {
   color: #153d9f;
 }

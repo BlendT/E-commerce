@@ -1,0 +1,21 @@
+.slider {
+  width: auto;
+  position: relative;
+  z-index: 0;
+  top: 177px;
+  height: auto;
+  background-color: antiquewhite;
+}
+
+.slider-container {
+  position: absolute;
+  width: 100%;
+}
+
+.slider-container img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+  border: none;
+  margin: 0 auto;
+}
