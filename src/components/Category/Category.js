@@ -1,5 +1,6 @@
 import classes from "./Category.module.css";
 import img from "../../assets/img1.jpg";
+import { Link } from "react-router-dom";
 
 const Dummy_categorys = [
   {
@@ -44,14 +45,14 @@ const Category = () => {
         <ul>
           {Dummy_categorys.map((item) => (
             <li key={item.id}>
-              <a href="/">
+              <Link to="/">
                 <div className={classes.list}>
                   <div className={classes.listabc}>
                     <img src={item.url} alt={item.category}></img>
                   </div>
                   <h3>{item.category}</h3>
                 </div>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

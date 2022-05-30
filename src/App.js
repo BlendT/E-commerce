@@ -1,20 +1,17 @@
 import "./App.css";
+
+import { Route, Routes, Navigate } from "react-router-dom";
 import React from "react";
-import Header from "./components/Header/Header";
-import Slider from "./components/Slider/Slider";
-import Category from "./components/Category/Category";
-import Brands from "./components/PopularBrands/Brands";
+import HomePage from "./pages/HomePage";
+import MyAccountPage from "./pages/MyAccountPage";
 
 function App() {
   return (
-    <React.Fragment>
-      <Header />
-      <main>
-        <Slider />
-        <Category />
-        <Brands />
-      </main>
-    </React.Fragment>
+    <Routes>
+      <Route path="/" exact element={<Navigate to="/home" />}></Route>
+      <Route path="/home" element={<HomePage />}></Route>
+      <Route path="/myAccount" element={<MyAccountPage />}></Route>
+    </Routes>
   );
 }
 

@@ -1,0 +1,36 @@
+.login-container {
+  width: 360px;
+  height: 500px;
+  border: 1px solid rgb(183, 175, 175);
+  position: absolute;
+  margin-top: 60px;
+  left: 39%;
+}
+
+.login-container img {
+  height: 40%;
+  width: 100%;
+}
+
+.input {
+  width: 80%;
+  margin: auto;
+}
+
+.input div {
+  margin-bottom: 15px;
+}
+
+.input div:last-child {
+  margin-bottom: 55px;
+  text-align: center;
+}
+
+.btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  color: #164194;
+  text-decoration: underline;
+}

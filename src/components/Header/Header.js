@@ -4,6 +4,7 @@ import { GoLocation } from "react-icons/go";
 import { FaRegUser } from "react-icons/fa";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { ReactComponent as Logo } from "../../assets/headerLogo.svg";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -13,13 +14,13 @@ const Header = () => {
           <nav>
             <ul>
               <li>
-                <a href="/">About Us</a>
+                <NavLink to="/aboutus">About Us</NavLink>
               </li>
               <li>
-                <a href="/">Community</a>
+                <NavLink to="/comunity">Community</NavLink>
               </li>
               <li>
-                <a href="/">Costumer Service</a>
+                <NavLink to="/costumerservices">Costumer Service</NavLink>
               </li>
             </ul>
           </nav>
@@ -27,19 +28,19 @@ const Header = () => {
             <ul>
               <li>
                 <VscSearch style={{ color: "blue" }} />
-                <a href="/">Home</a>
+                <NavLink to="/home">Home</NavLink>
               </li>
               <li>
                 <GoLocation style={{ color: "blue" }} />
-                <a href="/">Stores</a>
+                <NavLink to="/stores">Stores</NavLink>
               </li>
               <li>
                 <FaRegUser style={{ color: "blue" }} />
-                <a href="/">My Account</a>
+                <NavLink to="/myaccount">My Account</NavLink>
               </li>
               <li>
                 <MdOutlineShoppingBag style={{ color: "blue" }} />
-                <a href="/">Shopping Bag</a>
+                <NavLink to="/shopping">Shopping Bag</NavLink>
               </li>
             </ul>
           </nav>
@@ -47,36 +48,36 @@ const Header = () => {
       </div>
       <div className={classes["middle-content"]}>
         <div className={classes.tittle}>
-          <a href="/">
+          <NavLink to="/home">
             <Logo />
-          </a>
+          </NavLink>
         </div>
         <div className={classes.category}>
           <nav>
             <ul>
               <li>
-                <a href="/">Womens</a>
+                <NavLink to="/">Womens</NavLink>
               </li>
               <li>
-                <a href="/">Mens</a>
+                <NavLink to="/">Mens</NavLink>
               </li>
               <li>
-                <a href="/">kids</a>
+                <NavLink to="/">kids</NavLink>
               </li>
               <li>
-                <a href="/">fitness</a>
+                <NavLink to="/">fitness</NavLink>
               </li>
               <li>
-                <a href="/">sports</a>
+                <NavLink to="/">sports</NavLink>
               </li>
               <li>
-                <a href="/">fangear</a>
+                <NavLink to="/">fangear</NavLink>
               </li>
               <li>
-                <a href="/">brands</a>
+                <NavLink to="/">brands</NavLink>
               </li>
               <li>
-                <a href="/">sale</a>
+                <NavLink to="/">sale</NavLink>
               </li>
             </ul>
           </nav>
@@ -86,13 +87,13 @@ const Header = () => {
         <nav>
           <ul>
             <li>
-              <a href="/">FREE SHIPPING OVER $150*</a>
+              <NavLink to="/">FREE SHIPPING OVER $150*</NavLink>
             </li>
             <li>
-              <a href="/">FREE CLICK & COLLECT</a>
+              <NavLink to="/">FREE CLICK & COLLECT</NavLink>
             </li>
             <li>
-              <a href="/">AFTERPAY & ZIPPAY AVAILABLE*</a>
+              <NavLink to="/">AFTERPAY & ZIPPAY AVAILABLE*</NavLink>
             </li>
           </ul>
         </nav>

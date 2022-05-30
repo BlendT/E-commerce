@@ -1,4 +1,5 @@
 import classes from "./Brands.module.css";
+import { Link } from "react-router-dom";
 
 const Dummy_Brands = [
   {
@@ -50,12 +51,12 @@ const Brands = () => {
         <ul>
           {Dummy_Brands.map((item) => (
             <li key={item.id}>
-              <a href="/">
+              <Link to="/">
                 <div className={classes.brands}>
                   <img src={item.url} alt="brands" />
                   <span>{item.name}</span>
                 </div>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
