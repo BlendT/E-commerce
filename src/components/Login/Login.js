@@ -5,48 +5,73 @@ import Button from "../../UI/Button";
 import Register from "../Register/Register";
 import { useReducer, useState } from "react";
 
-const initialState = {
-  email: "",
-  password: "",
-};
-
-const formReducer = (state, action) => {
+const emailReducer = (state, action) => {
   switch (action.type) {
     case "email":
-      return { ...state, email: action.email };
-
-    case "password":
-      return { ...state, password: action.password };
+      return {
+        email: action.email,
+        emailIsValid: action.email.includes("@") ? true : false,
+      };
 
     default:
       return state;
   }
 };
 
-const Login = () => {
-  const [formState, dispatch] = useReducer(formReducer, initialState);
-  const [showRegister, setShowRegister] = useState(false);
-  console.log(formState.password);
+const passwordReducer = (state, action) => {
+  switch (action.type) {
+    case "password":
+      return {
+        password: action.password,
+        passwordIsValid: action.password.length > 6 ? true : false,
+      };
+    default:
+      return state;
+  }
+};
 
-  const registerHandleOnClick = () => {
+const Login = () => {
+  const [emailState, dispatchEmail] = useReducer(emailReducer, {
+    email: "",
+    emailIsValid: null,
+  });
+
+  const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
+    password: "",
+    passwordIsValid: null,
+  });
+
+  const [showRegister, setShowRegister] = useState(false);
+
+  const registerHandleOnShow = () => {
     setShowRegister(true);
   };
 
-  const loginHandleOnClick = () => {
+  const loginHandleOnShow = () => {
     setShowRegister(false);
   };
 
   const emailHandleOnChange = (event) => {
-    dispatch({
+    dispatchEmail({
       type: "email",
       email: event.target.value,
     });
   };
 
   const passwordHandleOnChange = (event) => {
-    dispatch({
+    dispatchPassword({
       type: "password",
       password: event.target.value,
+    });
+  };
+
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+    console.log("eemasdsd", emailState.emailIsValid);
+    console.log("password", passwordState.passwordIsValid);
+    dispatchEmail({
+      type: "email",
+      email: "",
     });
   };
 
@@ -57,20 +82,21 @@ const Login = () => {
           <img src={img} alt="svg" />
           <label htmlFor="email" />
           <div className={classes.input}>
-            <form>
+            <form onSubmit={handleOnSubmit}>
               <div>
                 <Input
                   type="text"
                   placeholder="email"
-                  value={formState.email}
+                  value={emailState.email}
                   onChange={emailHandleOnChange}
                 />
               </div>
+              {!emailState.emailIsValid && <p>sdsd</p>}
               <div>
                 <Input
                   type="password"
                   placeholder="password"
-                  value={formState.password}
+                  value={passwordState.password}
                   onChange={passwordHandleOnChange}
                 />
               </div>
@@ -79,14 +105,14 @@ const Login = () => {
               </div>
             </form>
             <div>
-              <button className={classes.btn} onClick={registerHandleOnClick}>
+              <button className={classes.btn} onClick={registerHandleOnShow}>
                 Register
               </button>
             </div>
           </div>
         </div>
       )}
-      {showRegister && <Register loginHandleOnClick={loginHandleOnClick} />}
+      {showRegister && <Register loginHandleOnShow={loginHandleOnShow} />}
     </div>
   );
 };

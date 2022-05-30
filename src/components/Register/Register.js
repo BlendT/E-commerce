@@ -24,7 +24,7 @@ const Register = (props) => {
           </div>
         </form>
         <div>
-          <button className={classes.btn} onClick={props.loginHandleOnClick}>
+          <button className={classes.btn} onClick={props.loginHandleOnShow}>
             Back to Log In
           </button>
         </div>
