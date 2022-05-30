@@ -1,0 +1,42 @@
+.category-container {
+  text-align: center;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.category-container h1 {
+  padding: 25px;
+}
+
+.list {
+  width: 200px;
+  margin-top: 45px;
+  height: 250px;
+  border: 1px solid;
+}
+.listabc {
+  width: 100%;
+  height: 80%;
+}
+
+.list img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.list-container {
+  width: 100%;
+}
+
+.list-container ul {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+}
+
+.list-container a {
+  color: black;
+  text-decoration: none;
+}
