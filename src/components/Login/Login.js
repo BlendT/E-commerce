@@ -3,14 +3,20 @@ import Input from "../../UI/Input";
 import img from "../../assets/headerLogo.svg";
 import Button from "../../UI/Button";
 import Register from "../Register/Register";
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 
 const emailReducer = (state, action) => {
   switch (action.type) {
-    case "email":
+    case "EMAIL":
       return {
         email: action.email,
         emailIsValid: action.email.includes("@") ? true : false,
+      };
+
+    case "EMAIL_ON_BLUR":
+      return {
+        email: state.email,
+        emailIsValid: state.email.includes("@") ? true : false,
       };
 
     default:
@@ -20,17 +26,26 @@ const emailReducer = (state, action) => {
 
 const passwordReducer = (state, action) => {
   switch (action.type) {
-    case "password":
+    case "PASSWORD":
       return {
         password: action.password,
         passwordIsValid: action.password.length > 6 ? true : false,
       };
+
+    case "PASSWORD_ON_BLUR":
+      return {
+        password: state.password,
+        passwordIsValid: state.password.length > 6 ? true : false,
+      };
+
     default:
       return state;
   }
 };
 
 const Login = () => {
+  const [formIsValid, setFormIsValid] = useState();
+
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
     email: "",
     emailIsValid: null,
@@ -40,6 +55,22 @@ const Login = () => {
     password: "",
     passwordIsValid: null,
   });
+
+  const { emailIsValid } = emailState;
+  const { passwordIsValid } = passwordState;
+
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      setFormIsValid(emailIsValid && passwordIsValid);
+    }, 1000);
+
+    return () => {
+      clearTimeout(identifier);
+    };
+  }, [emailIsValid, passwordIsValid]);
 
   const [showRegister, setShowRegister] = useState(false);
 
@@ -53,26 +84,31 @@ const Login = () => {
 
   const emailHandleOnChange = (event) => {
     dispatchEmail({
-      type: "email",
+      type: "EMAIL",
       email: event.target.value,
+    });
+  };
+
+  const emailHandleOnBlur = () => {
+    dispatchEmail({
+      type: "EMAIL_ON_BLUR",
+    });
+  };
+
+  const passwordOnBlur = () => {
+    dispatchPassword({
+      type: "PASSWORD_ON_BLUR",
     });
   };
 
   const passwordHandleOnChange = (event) => {
     dispatchPassword({
-      type: "password",
+      type: "PASSWORD",
       password: event.target.value,
     });
   };
-
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    console.log("eemasdsd", emailState.emailIsValid);
-    console.log("password", passwordState.passwordIsValid);
-    dispatchEmail({
-      type: "email",
-      email: "",
-    });
   };
 
   return (
@@ -85,21 +121,28 @@ const Login = () => {
             <form onSubmit={handleOnSubmit}>
               <div>
                 <Input
+                  ref={emailInputRef}
                   type="text"
                   placeholder="email"
+                  isValid={emailState.emailIsValid}
                   value={emailState.email}
                   onChange={emailHandleOnChange}
+                  onBlur={emailHandleOnBlur}
                 />
               </div>
-              {!emailState.emailIsValid && <p>sdsd</p>}
+
               <div>
                 <Input
+                  ref={passwordInputRef}
                   type="password"
                   placeholder="password"
+                  isValid={passwordState.passwordIsValid}
                   value={passwordState.password}
                   onChange={passwordHandleOnChange}
+                  onBlur={passwordOnBlur}
                 />
               </div>
+
               <div>
                 <Button>Log In</Button>
               </div>

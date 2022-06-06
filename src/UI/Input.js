@@ -13,7 +13,6 @@ const Input = React.forwardRef((props, ref) => {
     return { focus: activate };
   });
 
-
   return (
     <div
       className={`${classes.control} ${
@@ -24,6 +23,7 @@ const Input = React.forwardRef((props, ref) => {
         ref={inputRef}
         type={props.type}
         id={props.id}
+        placeholder={props.placeholder}
         value={props.value}
         onChange={props.onChange}
         onBlur={props.onBlur}

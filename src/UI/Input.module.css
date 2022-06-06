@@ -1,4 +1,8 @@
-.input {
+.control {
+  text-align: center;
+}
+
+.control input {
   width: 100%;
   padding: 5px;
   outline: none;
@@ -7,3 +11,13 @@
   box-sizing: border-box;
 }
 
+.control input:focus {
+  outline: none;
+  border-color: #4f005f;
+  background: #f6dbfc;
+}
+
+.control.isNotValid input {
+  outline: none;
+  border-color: red;
+}
