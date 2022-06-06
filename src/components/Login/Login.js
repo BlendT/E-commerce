@@ -109,6 +109,8 @@ const Login = () => {
   };
   const handleOnSubmit = (event) => {
     event.preventDefault();
+
+    console.log(formIsValid);
   };
 
   return (

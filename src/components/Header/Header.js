@@ -5,6 +5,7 @@ import { FaRegUser } from "react-icons/fa";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { ReactComponent as Logo } from "../../assets/headerLogo.svg";
 import { NavLink } from "react-router-dom";
+import Button from "../../UI/Button";
 
 const Header = () => {
   return (
@@ -53,50 +54,46 @@ const Header = () => {
           </NavLink>
         </div>
         <div className={classes.category}>
-          <nav>
-            <ul>
-              <li>
-                <NavLink to="/">Womens</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">Mens</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">kids</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">fitness</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">sports</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">fangear</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">brands</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">sale</NavLink>
-              </li>
-            </ul>
-          </nav>
+          <ul>
+            <li>
+              <NavLink to="/">Womens</NavLink>
+            </li>
+            <li>
+              <NavLink to="/">Mens</NavLink>
+            </li>
+            <li>
+              <NavLink to="/">kids</NavLink>
+            </li>
+            <li>
+              <NavLink to="/">fitness</NavLink>
+            </li>
+            <li>
+              <NavLink to="/">sports</NavLink>
+            </li>
+            <li>
+              <NavLink to="/">fangear</NavLink>
+            </li>
+            <li>
+              <NavLink to="/">brands</NavLink>
+            </li>
+            <li>
+              <NavLink to="/">sale</NavLink>
+            </li>
+          </ul>
         </div>
       </div>
       <div className={classes.offers}>
-        <nav>
-          <ul>
-            <li>
-              <NavLink to="/">FREE SHIPPING OVER $150*</NavLink>
-            </li>
-            <li>
-              <NavLink to="/">FREE CLICK & COLLECT</NavLink>
-            </li>
-            <li>
-              <NavLink to="/">AFTERPAY & ZIPPAY AVAILABLE*</NavLink>
-            </li>
-          </ul>
-        </nav>
+        <ul>
+          <li>
+            <NavLink to="/">FREE SHIPPING OVER $150*</NavLink>
+          </li>
+          <li>
+            <NavLink to="/">FREE CLICK & COLLECT</NavLink>
+          </li>
+          <li>
+            <NavLink to="/">AFTERPAY & ZIPPAY AVAILABLE*</NavLink>
+          </li>
+        </ul>
       </div>
     </div>
   );

@@ -1,23 +1,25 @@
+import Spiner from "../../UI/Spiner";
 import classes from "./Register.module.css";
 import Input from "../../UI/Input";
 import img from "../../assets/headerLogo.svg";
 import Button from "../../UI/Button";
 import { useEffect, useReducer, useRef, useState } from "react";
+import UserAccout from "../Login/UserAccount";
 
-const nameRegex = new RegExp("/[A-Za-z]/");
+const nameRegex = new RegExp(/[A-Za-z]+/g);
 
 const nameReducer = (state, action) => {
   switch (action.type) {
     case "NAME":
       return {
         name: action.name,
-        isValid: action.name.match("\\w+") ? true : false,
+        isValid: action.name.match(nameRegex) ? true : false,
       };
 
     case "NAME_ON_BLUR":
       return {
         name: state.name,
-        isValid: state.name.match("\\w+") ? true : false,
+        isValid: state.name.match(nameRegex) ? true : false,
       };
     default:
       return state;
@@ -64,6 +66,9 @@ const passwordReducer = (state, action) => {
 
 const Register = (props) => {
   const [formIsValid, setFormIsValid] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [error, setError] = useState("");
 
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
     email: "",
@@ -135,57 +140,101 @@ const Register = (props) => {
   const formHandleOnSubmit = (event) => {
     event.preventDefault();
 
-    console.log(formIsValid);
+    if (!formIsValid) {
+      return;
+    }
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      fetch(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB_vXCslWqmxrgT-2KfEQBpjXfzHNlhYV4",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: emailState.email,
+            password: passwordState.password,
+            returnSecureToken: true,
+          }),
+          headers: { "Content-Type": "application/json" },
+        }
+      ).then((response) => {
+        if (response.ok) {
+          setIsRegistered(true);
+          setIsLoading(false);
+        } else {
+          return response.json().then((data) => {
+            setIsRegistered(false);
+            setIsLoading(false);
+            setError(data);
+            alert(data.error.message);
+          });
+        }
+      });
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+      setIsLoading(false);
+    };
   };
 
   return (
-    <div className={classes["login-container"]}>
-      <img src={img} alt="svg" />
-      <label htmlFor="email" />
-      <div className={classes.input}>
-        <form onSubmit={formHandleOnSubmit}>
-          <div>
-            <div>
-              <Input
-                type="text"
-                placeholder="name"
-                value={nameState.name}
-                onChange={nameHandleOnChange}
-                isValid={nameState.isValid}
-                onBlur={nameHandleOnBlur}
-              />
-            </div>
-            <Input
-              type="text"
-              ref={emailRef}
-              placeholder="email"
-              value={emailState.email}
-              isValid={emailState.isValid}
-              onChange={emailHandleOnChange}
-              onBlur={emailHandleOnBlur}
-            />
-          </div>
-          <div>
-            <Input
-              ref={passwordRef}
-              type="password"
-              placeholder="password"
-              value={passwordState.password}
-              isValid={passwordState.isValid}
-              onChange={passwordHandleOnChange}
-              onBlur={passwordHandleOnBlur}
-            />
-          </div>
-          <div>
-            <Button>Register</Button>
-          </div>
-        </form>
-        <div>
-          <button className={classes.btn} onClick={props.loginHandleOnShow}>
-            Back to Log In
-          </button>
+    <div className={classes.login}>
+      {isLoading && (
+        <div className={classes.spiner}>
+          <Spiner />
         </div>
-      </div>
+      )}
+      {!isLoading && isRegistered && <UserAccout />}
+
+      {!isLoading && !isRegistered && (
+        <div className={classes["login-container"]}>
+          <img src={img} alt="svg" />
+          <label htmlFor="email" />
+          <div className={classes.input}>
+            <form onSubmit={formHandleOnSubmit}>
+              <div>
+                <div>
+                  <Input
+                    type="text"
+                    placeholder="name"
+                    value={nameState.name}
+                    onChange={nameHandleOnChange}
+                    isValid={nameState.isValid}
+                    onBlur={nameHandleOnBlur}
+                  />
+                </div>
+                <Input
+                  type="text"
+                  ref={emailRef}
+                  placeholder="email"
+                  value={emailState.email}
+                  isValid={emailState.isValid}
+                  onChange={emailHandleOnChange}
+                  onBlur={emailHandleOnBlur}
+                />
+              </div>
+              <div>
+                <Input
+                  ref={passwordRef}
+                  type="password"
+                  placeholder="password"
+                  value={passwordState.password}
+                  isValid={passwordState.isValid}
+                  onChange={passwordHandleOnChange}
+                  onBlur={passwordHandleOnBlur}
+                />
+              </div>
+              <div>
+                <Button>Register</Button>
+              </div>
+            </form>
+            <div>
+              <button className={classes.btn} onClick={props.loginHandleOnShow}>
+                Back to Log In
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

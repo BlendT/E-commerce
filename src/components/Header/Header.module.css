@@ -23,6 +23,11 @@
   margin-top: 0px;
 }
 
+.category {
+  display: flex;
+  justify-content: space-between;
+}
+
 .header ul,
 .category ul,
 .offers ul {
