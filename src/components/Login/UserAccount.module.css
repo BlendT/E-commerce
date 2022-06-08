@@ -1,0 +1,37 @@
+.login {
+  position: absolute;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-top: 20px;
+  display: flex;
+}
+
+.btn {
+  background: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  color: blue;
+}
+
+.card {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.card div {
+  margin-right: 15px;
+}
+
+.middle-container {
+  position: relative;
+  width: 100%;
+}
+
+.card a {
+  margin-right: 15px;
+}
