@@ -1,0 +1,34 @@
+.list {
+  position: relative;
+  width: 394px;
+}
+
+.btn {
+  background: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  color: blue;
+}
+
+.list ul {
+  display: block;
+  padding-left: 0;
+}
+
+.list li {
+  list-style-type: none;
+  padding-top: 10px;
+}
+
+.list a {
+  text-decoration: none;
+  color: black;
+}
+
+.list a:hover {
+  color: blue;
+}

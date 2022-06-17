@@ -1,13 +1,17 @@
 import classes from "./Header.module.css";
 import { VscSearch } from "react-icons/vsc";
+import { CgProfile } from "react-icons/cg";
 import { GoLocation } from "react-icons/go";
-import { FaRegUser } from "react-icons/fa";
+import { FaMousePointer, FaRegUser } from "react-icons/fa";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { ReactComponent as Logo } from "../../assets/headerLogo.svg";
 import { NavLink } from "react-router-dom";
-import Button from "../../UI/Button";
+import { useContext } from "react";
+import AuthContext from "../../store/auth-context";
 
 const Header = () => {
+  const authCtx = useContext(AuthContext);
+
   return (
     <div className={classes["header-container"]}>
       <div className={classes["top-header"]}>

@@ -3,8 +3,8 @@ import classes from "./Register.module.css";
 import Input from "../../UI/Input";
 import img from "../../assets/headerLogo.svg";
 import Button from "../../UI/Button";
-import { useEffect, useReducer, useRef, useState } from "react";
-import UserAccout from "../Login/UserAccount";
+import { useContext, useEffect, useReducer, useRef, useState } from "react";
+import AuthContext from "../../store/auth-context";
 
 const nameRegex = new RegExp(/[A-Za-z]+/g);
 
@@ -67,8 +67,10 @@ const passwordReducer = (state, action) => {
 const Register = (props) => {
   const [formIsValid, setFormIsValid] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const [isRegistered, setIsRegistered] = useState(false);
+
   const [error, setError] = useState("");
+
+  const authCtx = useContext(AuthContext);
 
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
     email: "",
@@ -158,11 +160,11 @@ const Register = (props) => {
         }
       ).then((response) => {
         if (response.ok) {
-          setIsRegistered(true);
+          authCtx.registerHandler(true);
           setIsLoading(false);
         } else {
           return response.json().then((data) => {
-            setIsRegistered(false);
+            authCtx.registerHandler(false);
             setIsLoading(false);
             setError(data);
             alert(data.error.message);
@@ -172,6 +174,7 @@ const Register = (props) => {
     }, 1000);
     return () => {
       clearTimeout(timer);
+      authCtx.registerHandler(false);
       setIsLoading(false);
     };
   };
@@ -183,9 +186,8 @@ const Register = (props) => {
           <Spiner />
         </div>
       )}
-      {!isLoading && isRegistered && <UserAccout />}
 
-      {!isLoading && !isRegistered && (
+      {!isLoading && !authCtx.isRegistered && (
         <div className={classes["login-container"]}>
           <img src={img} alt="svg" />
           <label htmlFor="email" />
@@ -228,7 +230,7 @@ const Register = (props) => {
               </div>
             </form>
             <div>
-              <button className={classes.btn} onClick={props.loginHandleOnShow}>
+              <button className={classes.btn} onClick={authCtx.showRegister}>
                 Back to Log In
               </button>
             </div>

@@ -1,0 +1,19 @@
+.card {
+  width: 330px;
+  height: 180px;
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+}
+
+.card:hover {
+  background-color: #164194;
+  color: white;
+  cursor: pointer;
+}
+
+.card li {
+  position: relative;
+  text-align: center;
+  top: 35%;
+}

@@ -1,9 +1,11 @@
 import classes from "./Login.module.css";
+import Spiner from "../../UI/Spiner";
 import Input from "../../UI/Input";
 import img from "../../assets/headerLogo.svg";
 import Button from "../../UI/Button";
 import Register from "../Register/Register";
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useContext, useEffect, useReducer, useRef, useState } from "react";
+import AuthContext from "../../store/auth-context";
 
 const emailReducer = (state, action) => {
   switch (action.type) {
@@ -45,6 +47,9 @@ const passwordReducer = (state, action) => {
 
 const Login = () => {
   const [formIsValid, setFormIsValid] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const authCtx = useContext(AuthContext);
 
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
     email: "",
@@ -71,16 +76,6 @@ const Login = () => {
       clearTimeout(identifier);
     };
   }, [emailIsValid, passwordIsValid]);
-
-  const [showRegister, setShowRegister] = useState(false);
-
-  const registerHandleOnShow = () => {
-    setShowRegister(true);
-  };
-
-  const loginHandleOnShow = () => {
-    setShowRegister(false);
-  };
 
   const emailHandleOnChange = (event) => {
     dispatchEmail({
@@ -109,13 +104,53 @@ const Login = () => {
   };
   const handleOnSubmit = (event) => {
     event.preventDefault();
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      fetch(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB_vXCslWqmxrgT-2KfEQBpjXfzHNlhYV4",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: emailState.email,
+            password: passwordState.password,
+            returnSecureToken: true,
+          }),
 
-    console.log(formIsValid);
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((response) => {
+          if (response.ok) {
+            setIsLoading(false);
+            return response.json();
+          } else {
+            return response.json().then((data) => {
+              setIsLoading(false);
+              throw new Error(data.error.message);
+            });
+          }
+        })
+        .then((data) => {
+          authCtx.login(data.idToken);
+        })
+        .catch((err) => alert(err.message));
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
   };
 
   return (
     <div>
-      {!showRegister && (
+      {isLoading && (
+        <div className={classes.spiner}>
+          <Spiner />
+        </div>
+      )}
+      {!isLoading && !authCtx.registerIsShown && (
         <div className={classes["login-container"]}>
           <img src={img} alt="svg" />
           <label htmlFor="email" />
@@ -150,14 +185,13 @@ const Login = () => {
               </div>
             </form>
             <div>
-              <button className={classes.btn} onClick={registerHandleOnShow}>
+              <button className={classes.btn} onClick={authCtx.showRegister}>
                 Register
               </button>
             </div>
           </div>
         </div>
       )}
-      {showRegister && <Register loginHandleOnShow={loginHandleOnShow} />}
     </div>
   );
 };

@@ -92,3 +92,8 @@
 .offers ul {
   margin: 4px;
 }
+
+.profile {
+  align-items: center;
+  display: flex;
+}
